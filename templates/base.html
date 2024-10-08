@@ -1,0 +1,35 @@
+{% load sass_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% sass_src 'djangoProject/css/style.scss' %}">
+</head>
+<body>
+<header>
+    <h1>My Site Header</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home:Home' %}">Home</a></li>
+            <li><a href="{% url 'polls:index' %}">Polls</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div>
+    ====================================================================================================================
+</div>
+
+<main>
+    {% block content %}
+        <h1>Content Default</h1>
+    {% endblock %}
+</main>
+
+<footer>
+    <p>My Site Footer</p>
+</footer>
+</body>
+</html>

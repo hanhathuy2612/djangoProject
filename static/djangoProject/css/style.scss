@@ -1,0 +1,12 @@
+.home {
+  background: red;
+  width: 300px;
+  height: 300px;
+
+  &__alo {
+    flex-direction: column;
+    background: yellow;
+    width: 300px;
+    height: 300px;
+  }
+}

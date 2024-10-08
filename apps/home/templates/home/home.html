@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Polls - My Site{% endblock %}
+
+{% block content %}
+    <img src="{% static 'djangoProject/images/Component 11 (1).svg' %}" alt="My image">
+
+    <div class="home">
+        dd
+    </div>
+
+    <div class="home__alo"></div>
+
+    {% for question in questions %}
+        <li>{{ question.question_text }}</li>
+    {% endfor %}
+{% endblock %}
