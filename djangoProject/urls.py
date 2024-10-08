@@ -19,9 +19,10 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 
 from djangoProject import settings
+from djangoProject.views import home
 
 urlpatterns = [
-    path('', include("apps.home.urls")),
+    path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
     re_path(r'^api/', include('apps.apis.urls')),

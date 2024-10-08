@@ -39,7 +39,6 @@ APPEND_SLASH = False
 INSTALLED_APPS = [
     "polls.apps.PollsConfig",
     "apps.apis.apps.ApisConfig",
-    "apps.home.apps.HomeConfig",
     "account.apps.AccountConfig",
     'django.contrib.admin',
     'django.contrib.auth',
