@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-    'sass_processor'
+    'sass_processor',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'djangoProject.middleware.log_middleware.LogRequestMiddleware'
 ]
 
 ROOT_URLCONF = 'djangoProject.urls'
@@ -169,6 +171,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 LOGGING = {
@@ -176,7 +179,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     'formatters': {
         'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
+            'format': '[{levelname}] [{asctime}] [{module}]: {message}',
             'style': '{',
         },
         'simple': {
@@ -184,14 +187,34 @@ LOGGING = {
             'style': '{',
         },
     },
-    "root": {
-        "level": "INFO",
-        "handlers": ["console"],
-    },
     "handlers": {
         "console": {
             "level": "INFO",
             "class": "logging.StreamHandler",
+            "formatter": "verbose"
+        },
+        "console_debug": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose"
         }
-    }
+    },
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console", "console_debug"],
+        "propagate": True
+    },
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        },
+        'Basic': {
+            'type': 'basic'
+        },
+    },
 }
